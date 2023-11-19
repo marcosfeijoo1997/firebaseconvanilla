@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Hello world</h1>
+    
+</body>
+
+<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.6.0/firebase-firestore-compat.js"></script>
+
+
+
+<script type="module"> 
+ 
+
+    
+  // Configura tu objeto de configuración de Firebase con las credenciales de tu proyecto
+const firebaseConfig = {
+  apiKey: "AIzaSyCqXhC9UrVzHTfmjuizGcCd6j5NuA0zals",
+  authDomain: "cerveceria-2b619.firebaseapp.com",
+  projectId: "cerveceria-2b619",
+  storageBucket: "cerveceria-2b619.appspot.com",
+  messagingSenderId: "493474167264",
+  appId: "1:493474167264:web:425aa487cc809f49689385",
+  measurementId: "G-VYZVS5ZTMN"
+};
+  // Inicializa Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  // Obtén una referencia a la base de datos Firestore
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js'
+  import { getFirestore,collection,getDocs } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js'
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  
+  // Get a list of cities from your database
+  async function getCities(db) {
+    const citiesCol = collection(db, 'cerveceria');
+
+    const citySnapshot = await getDocs(citiesCol);
+
+    const cityList = citySnapshot.docs.map((doc) => {return{id:doc.id,...doc.data()}})
+    console.log(cityList)
+ 
+  }
+
+  getCities(db);
+  
+</script>
+</html>
